@@ -1,7 +1,22 @@
+"""
+Documentación:
+Función crea los directorios data_lake donde se guardan los archivos. 
+```
+    .
+    |
+    \___ data_lake/
+         |___ landing/
+         |___ raw/
+         |___ cleansed/
+         \___ business/
+              |___ reports/
+              |    |___ figures/
+              |___ features/
+              |___ forecasts/
 
+    ```
 
-from sqlalchemy import true
-
+"""
 
 def create_data_lake():
     """Cree el data lake con sus capas.
