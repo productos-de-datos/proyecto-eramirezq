@@ -1,6 +1,3 @@
-from os import sep
-from pandas import read_excel
-
 
 def transform_data():
     """Transforme los archivos xls a csv.
