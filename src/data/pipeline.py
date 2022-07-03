@@ -12,8 +12,6 @@ En luigi llame las funciones que ya creo.
 
 """
 import luigi
-from luigi import Task, LocalTarget
-
 from clean_data import clean_data
 
 from ingest_data import ingest_data
