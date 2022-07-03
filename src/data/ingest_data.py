@@ -26,11 +26,12 @@ def ingest_data():
         with open('data_lake/landing/' + nombre_archivo, 'wb') as f:
             f.write(requests.get(url_descarga).content)
         
-    raise NotImplementedError("Implementar esta función")
+    #raise NotImplementedError("Implementar esta función")
 
 
 if __name__ == "__main__":
     
+    ingest_data()
     
     import doctest
 
