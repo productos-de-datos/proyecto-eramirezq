@@ -32,12 +32,12 @@ def transform_data():
             df.to_csv(f'data_lake/raw/{file_name}.csv', sep=',', index=False, decimal=',')
        
     
-    #raise NotImplementedError("Implementar esta función")
+    raise NotImplementedError("Implementar esta función")
 
 
 if __name__ == "__main__":
     
-    transform_data()
+    
     
     import doctest
 
