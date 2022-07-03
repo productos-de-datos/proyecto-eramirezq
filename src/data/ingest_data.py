@@ -13,21 +13,24 @@ def ingest_data():
     descarga debe realizarse usando únicamente funciones de Python.
 
     """
-    import github
+    
     import requests
-    g   = github.Github()
-    repo = g.get_repo('jdvelasq/datalabs')
-    contents = repo.get_contents('datasets/precio_bolsa_nacional/xls')
+    
+   
 
-    for contentFile in contents:
-        url_descarga = contentFile.download_url
+    for num in range(1995,2022):
+        if num in range(2016,2018):
+            url_descarga = 'https://raw.githubusercontent.com/jdvelasq/datalabs/master/datasets/precio_bolsa_nacional/xls/{}.xls'.format(num)
+        else:
+            url_descarga = 'https://raw.githubusercontent.com/jdvelasq/datalabs/master/datasets/precio_bolsa_nacional/xls/{}.xlsx'.format(num)
+        
         nombre_archivo = url_descarga.rsplit('/', 1)[1]
         
         with open('data_lake/landing/' + nombre_archivo, 'wb') as f:
             f.write(requests.get(url_descarga).content)
         
     #raise NotImplementedError("Implementar esta función")
-
+    
 
 if __name__ == "__main__":
     
