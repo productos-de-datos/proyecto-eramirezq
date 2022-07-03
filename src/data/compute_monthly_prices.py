@@ -24,10 +24,12 @@ def compute_monthly_prices():
     
     promedio_precios_mes.to_csv('data_lake/business/precios-mensuales.csv', index=True, decimal=',')
     
-    raise NotImplementedError("Implementar esta función")
+    #raise NotImplementedError("Implementar esta función")
 
 
 if __name__ == "__main__":
+    
+    compute_monthly_prices()
     
     import doctest
 
