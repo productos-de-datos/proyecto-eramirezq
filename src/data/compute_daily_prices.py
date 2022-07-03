@@ -19,11 +19,12 @@ def compute_daily_prices():
     promedio_precios_dia.to_csv('data_lake/business/precios-diarios.csv', index=True, decimal=',')
     
     
-    raise NotImplementedError("Implementar esta función")
+    #raise NotImplementedError("Implementar esta función")
 
 
 if __name__ == "__main__":
     
+    compute_daily_prices()
     
     import doctest
 
