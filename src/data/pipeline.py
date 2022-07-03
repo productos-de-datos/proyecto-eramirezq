@@ -58,7 +58,7 @@ if __name__ == "__main__":
         def run(self):
             compute_monthly_prices()
 
-    raise NotImplementedError("Implementar esta función")
+    #raise NotImplementedError("Implementar esta función")
 
 if __name__ == "__main__":
     import doctest
