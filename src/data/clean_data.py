@@ -42,12 +42,12 @@ def clean_data():
     lista_datos.to_csv(f'data_lake/cleansed/precios-horarios.csv', index=False, decimal=',')
     
     
-    raise NotImplementedError("Implementar esta función")
+    #raise NotImplementedError("Implementar esta función")
 
 
 if __name__ == "__main__":
     
-    
+    clean_data()
     import doctest
     
     doctest.testmod()
