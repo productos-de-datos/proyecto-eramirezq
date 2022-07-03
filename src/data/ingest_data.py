@@ -23,13 +23,15 @@ def ingest_data():
         url_descarga = contentFile.download_url
         nombre_archivo = url_descarga.rsplit('/', 1)[1]
         
-    with open('data_lake/landing/' + nombre_archivo, 'wb') as f:
-        f.write(requests.get(url_descarga).content)
+        with open('data_lake/landing/' + nombre_archivo, 'wb') as f:
+            f.write(requests.get(url_descarga).content)
         
-    raise NotImplementedError("Implementar esta función")
+    #raise NotImplementedError("Implementar esta función")
 
 
 if __name__ == "__main__":
+    ingest_data()
+    
     import doctest
 
     doctest.testmod()
