@@ -56,9 +56,9 @@ class computeMonthlyPrices(luigi.Task):
         compute_monthly_prices()
         
                 
-if __name__ == "__main__":
+#if __name__ == "__main__":
 
-    raise NotImplementedError("Implementar esta función")
+    #raise NotImplementedError("Implementar esta función")
 
 if __name__ == "__main__":
     import doctest
