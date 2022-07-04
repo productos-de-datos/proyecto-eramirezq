@@ -1,10 +1,11 @@
 """
 Módulo de ingestión de datos.
 -------------------------------------------------------------------------------
+Función para descargar archivos .xls y .xlsx de repo github
 
 """
 
-
+import requests
 def ingest_data():
     """Ingeste los datos externos a la capa landing del data lake.
 
@@ -13,10 +14,6 @@ def ingest_data():
     descarga debe realizarse usando únicamente funciones de Python.
 
     """
-    
-    import requests
-    
-   
 
     for num in range(1995,2022):
         if num in range(2016,2018):
@@ -26,12 +23,11 @@ def ingest_data():
         
         nombre_archivo = url_descarga.rsplit('/', 1)[1]
         
-        with open('data_lake/landing/' + nombre_archivo, 'wb') as f:
-            f.write(requests.get(url_descarga).content)
+        with open('data_lake/landing/' + nombre_archivo, 'wb') as file:
+            file.write(requests.get(url_descarga).content)
         
     #raise NotImplementedError("Implementar esta función")
     
-
 if __name__ == "__main__":
     
     ingest_data()
