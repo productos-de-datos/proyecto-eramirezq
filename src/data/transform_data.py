@@ -43,7 +43,7 @@ def transform_data():
 
 if __name__ == "__main__":
     
-    
+    transform_data()
     
     import doctest
 
