@@ -30,14 +30,14 @@ def train_daily_model():
     datos_modelo = datos_modelo.asfreq('D')
     datos_modelo = datos_modelo['y']
     
-    steps=730
+    steps=365
     datos_train = datos_modelo[:-steps]
     
     
-    regressor = RandomForestRegressor(max_depth=10, n_estimators=500, random_state=123)
+    regressor = RandomForestRegressor(max_depth=10, n_estimators=250, random_state=123)
     forecaster_rf = ForecasterAutoreg(
                     regressor=regressor,
-                    lags=730 #pronostico con datos historicos de los ultimos dos años.  
+                    lags=365 #pronostico con datos historicos de los ultimos dos años.  
                 )
     
     forecaster_rf.fit(y=datos_train) #entrenamiento
