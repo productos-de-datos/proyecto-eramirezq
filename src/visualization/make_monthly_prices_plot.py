@@ -1,3 +1,12 @@
+"""
+Modulo: crea grafica de los precios promedios mensuales - año.
+---------------------------------------------
+
+
+"""
+import matplotlib.pyplot as plt
+import pandas as pd
+
 def make_monthly_prices_plot():
     """Crea un grafico de lines que representa los precios promedios mensuales.
 
@@ -7,8 +16,7 @@ def make_monthly_prices_plot():
     El archivo se debe salvar en formato PNG en data_lake/business/reports/figures/monthly_prices.png
 
     """
-    import matplotlib.pyplot as plt
-    import pandas as pd
+    
     
     df = pd.read_csv('data_lake/business/precios-mensuales.csv', decimal=',')
     df.fecha = pd.to_datetime(df.fecha, errors='coerce')
