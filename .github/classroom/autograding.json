@@ -123,7 +123,7 @@
     {
       "name": "Test 13",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint",
-      "run": "pylint *.py",
+      "run": "pylint src/models/make_forecasts.py",
       "input": "",
       "output": "",
       "comparison": "included",
