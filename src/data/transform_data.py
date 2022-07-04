@@ -1,3 +1,12 @@
+"""
+Modulo transformacion de los datos.
+--------------------------------------------------------------------------------------------
+Transorma archivos .xls y .xlsx en carpeta data_lake/landing, a .csv y los almacena en carpeta data_lake/raw
+
+"""
+
+import os
+import pandas as pd
 
 def transform_data():
     """Transforme los archivos xls a csv.
@@ -8,36 +17,35 @@ def transform_data():
     H23.
 
     """
-    import os
-    import pandas as pd
+    
     
     
     dir = "data_lake/landing"
     for path in os.listdir(dir):
             
-            extension=os.path.splitext(path)[1]
+        extension=os.path.splitext(path)[1]
             
-            if extension == '.xlsx':
-                df=pd.read_excel(f'data_lake/landing/{path}', engine='openpyxl')
-            else:
-                if extension == '.xls':
-                    df=pd.read_excel(f'data_lake/landing/{path}', engine='xlrd')
+        if extension == '.xlsx':
+            df=pd.read_excel(f'data_lake/landing/{path}', engine='openpyxl')
+        else:
+            if extension == '.xls':
+                df=pd.read_excel(f'data_lake/landing/{path}', engine='xlrd')
                 
-            Header=df.index[(df.iloc[:,0] == 'Fecha')].tolist()
+        Cabecera=df.index[(df.iloc[:,0] == 'Fecha')].tolist()
             
-            if bool(Header) == True:
-                Header=int(Header[0])+1
-            else:
-                Header=0
+        if bool(Cabecera) == True:
+            Cabecera=int(Cabecera[0])+1
+        else:
+            Cabecera=0
                 
-            if extension == '.xlsx':    
-                df = pd.read_excel(f'data_lake/landing/{path}', header=Header, engine='openpyxl')
-            else:
-                if extension == '.xls':
-                    df = pd.read_excel(f'data_lake/landing/{path}', header=Header, engine='xlrd') 
+        if extension == '.xlsx':    
+            df = pd.read_excel(f'data_lake/landing/{path}', header=Cabecera, engine='openpyxl')
+        else:
+            if extension == '.xls':
+                df = pd.read_excel(f'data_lake/landing/{path}', header=Cabecera, engine='xlrd') 
                
-            file_name = os.path.splitext(path)[0]
-            df.to_csv(f'data_lake/raw/{file_name}.csv', sep=',', index=False, decimal=',')
+        file_name = os.path.splitext(path)[0]
+        df.to_csv(f'data_lake/raw/{file_name}.csv', sep=',', index=False, decimal=',')
        
     
     #raise NotImplementedError("Implementar esta función")
