@@ -1,4 +1,7 @@
 """
+Modulo pipeline de Luigi
+
+---------------------------------------------------------------------------
 Construya un pipeline de Luigi que:
 
 * Importe los datos xls
@@ -77,14 +80,10 @@ class computeMonthlyPrices(Task):
         with self.output().open('w'):
             compute_monthly_prices()
         
-
-        
-                
+               
 if __name__ == "__main__":
     
     luigi.run(["computeMonthlyPrices", "--local-scheduler"])
-
-    
 
     #raise NotImplementedError("Implementar esta función")
 
