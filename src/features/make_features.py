@@ -1,3 +1,9 @@
+"""
+Modulo preparar datos para modelar serie de tiempo.
+-----------------------------------------------------
+
+"""
+
 import pandas as pd
 
 def make_features():
