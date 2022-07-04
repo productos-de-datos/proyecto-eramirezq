@@ -20,7 +20,8 @@ def transform_data():
             if extension == '.xlsx':
                 df=pd.read_excel(f'data_lake/landing/{path}', engine='openpyxl')
             else:
-                df=pd.read_excel(f'data_lake/landing/{path}')
+                if extension == '.xls':
+                    df=pd.read_excel(f'data_lake/landing/{path}', engine='xlrd')
                 
             Header=df.index[(df.iloc[:,0] == 'Fecha')].tolist()
             
@@ -32,7 +33,8 @@ def transform_data():
             if extension == '.xlsx':    
                 df = pd.read_excel(f'data_lake/landing/{path}', header=Header, engine='openpyxl')
             else:
-                df = pd.read_excel(f'data_lake/landing/{path}', header=Header) 
+                if extension == '.xls':
+                    df = pd.read_excel(f'data_lake/landing/{path}', header=Header, engine='xlrd') 
                
             file_name = os.path.splitext(path)[0]
             df.to_csv(f'data_lake/raw/{file_name}.csv', sep=',', index=False, decimal=',')
