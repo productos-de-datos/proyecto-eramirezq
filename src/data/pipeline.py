@@ -44,7 +44,7 @@ class cleanData(Task):
         return transformData()
     
     def output(self):
-        return LocalTarget('data_lake/cleansed/precios-horarios.csv')
+        return LocalTarget('data_lake/cleansed/archivo.txt')
     
     def run(self):
         from clean_data import clean_data
@@ -57,7 +57,7 @@ class computeDailyPrices(Task):
         return cleanData()
     
     def output(self):
-        return LocalTarget('data_lake/business/precios-diarios.csv')
+        return LocalTarget('data_lake/business/archivo.txt')
     
     def run(self):
         from compute_daily_prices import compute_daily_prices
@@ -70,7 +70,7 @@ class computeMonthlyPrices(Task):
         return computeDailyPrices()
     
     def output(self):
-        return LocalTarget('data_lake/business/precios-mensuales.csv')
+        return LocalTarget('data_lake/business/archivo.txt')
     
     def run(self):
         from compute_monthly_prices import compute_monthly_prices
