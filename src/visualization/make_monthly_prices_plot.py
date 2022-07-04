@@ -10,7 +10,7 @@ def make_monthly_prices_plot():
     import matplotlib.pyplot as plt
     import pandas as pd
     
-    df = pd.read_csv('./data_lake/business/precios-mensuales.csv', decimal=',')
+    df = pd.read_csv('data_lake/business/precios-mensuales.csv', decimal=',')
     df.fecha = pd.to_datetime(df.fecha, errors='coerce')
     df = df.set_index('fecha')  
     _= df.plot( color='tab:blue', figsize=(17,6), marker='.')
