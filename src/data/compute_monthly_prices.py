@@ -1,3 +1,13 @@
+"""
+Modulo computar promedio precios por mes-año.
+
+----------------------------------------------
+
+"""
+
+import pandas as pd
+import datetime as dt
+
 def compute_monthly_prices():
     """Compute los precios promedios mensuales.
 
@@ -13,8 +23,7 @@ def compute_monthly_prices():
 
     """
     
-    import pandas as pd
-    import datetime as dt
+    
     df = pd.read_csv('data_lake/cleansed/precios-horarios.csv',sep=',',thousands=None, decimal=',', header=0)
     
     df['fecha']=pd.to_datetime(df['fecha'], format="%Y/%m")
