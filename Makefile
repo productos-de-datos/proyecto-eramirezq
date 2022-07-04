@@ -39,3 +39,9 @@ train_model:
 make_forecasts:
 	python3 src/model/make_forecasts.py
 
+make_daily_prices_plot:
+	python3 src/visualization/make_daily_prices_plot.py
+
+make_monthly_prices_plot:
+	python3 src/visualization/make_monthly_prices_plot.py
+
