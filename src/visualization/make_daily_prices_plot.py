@@ -1,3 +1,13 @@
+"""
+Modulo crea grafica de los precios promedios diarios.
+
+-----------------------------------------------------------------------
+
+"""
+
+import matplotlib.pyplot as plt
+import pandas as pd
+
 def make_daily_prices_plot():
     """Crea un grafico de lines que representa los precios promedios diarios.
 
@@ -7,8 +17,7 @@ def make_daily_prices_plot():
     El archivo se debe salvar en formato PNG en data_lake/business/reports/figures/daily_prices.png.
 
     """
-    import matplotlib.pyplot as plt
-    import pandas as pd
+    
     
     df = pd.read_csv('data_lake/business/precios-diarios.csv', decimal=',')
     df.fecha = pd.to_datetime(df.fecha, errors='coerce')
