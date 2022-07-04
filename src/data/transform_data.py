@@ -10,12 +10,18 @@ def transform_data():
     """
     import os
     import pandas as pd
-     
+    import xlwt 
     
     dir = "data_lake/landing"
     for path in os.listdir(dir):
             
-            df=pd.read_excel(f'data_lake/landing/{path}')
+            extension=os.path.splitext(path)[1]
+            
+            if extension == '.xlsx':
+                df=pd.read_excel(f'data_lake/landing/{path}', engine='openpyxl')
+            else:
+                df=pd.read_excel(f'data_lake/landing/{path}')
+                
             Header=df.index[(df.iloc[:,0] == 'Fecha')].tolist()
             
             if bool(Header) == True:
@@ -23,7 +29,10 @@ def transform_data():
             else:
                 Header=0
                 
-            df = pd.read_excel(f'data_lake/landing/{path}', header=Header) 
+            if extension == '.xlsx':    
+                df = pd.read_excel(f'data_lake/landing/{path}', header=Header, engine='openpyxl')
+            else:
+                df = pd.read_excel(f'data_lake/landing/{path}', header=Header) 
                
             file_name = os.path.splitext(path)[0]
             df.to_csv(f'data_lake/raw/{file_name}.csv', sep=',', index=False, decimal=',')
@@ -34,7 +43,7 @@ def transform_data():
 
 if __name__ == "__main__":
     
-    transform_data()
+    
     
     import doctest
 
