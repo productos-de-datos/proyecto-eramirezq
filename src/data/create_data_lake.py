@@ -1,23 +1,10 @@
 """
-Documentación:
-Función crea los directorios data_lake donde se guardan los archivos. 
-```
-    .
-    |
-    \___ data_lake/
-         |___ landing/
-         |___ raw/
-         |___ cleansed/
-         \___ business/
-              |___ reports/
-              |    |___ figures/
-              |___ features/
-              |___ forecasts/
 
-    ```
+Función crea los directorios data_lake donde se guardan los archivos. 
+
 
 """
-
+from os import mkdir
 def create_data_lake():
     """Cree el data lake con sus capas.
 
@@ -27,11 +14,11 @@ def create_data_lake():
     ```
     .
     |
-    \___ data_lake/
+    ___ data_lake/
          |___ landing/
          |___ raw/
          |___ cleansed/
-         \___ business/
+          ___ business/
               |___ reports/
               |    |___ figures/
               |___ features/
@@ -41,9 +28,6 @@ def create_data_lake():
     
 
     """
-    from os import mkdir
-    
-    
     mkdir('./data_lake')
     mkdir('./data_lake/landing')
     mkdir('./data_lake/raw')
