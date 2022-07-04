@@ -1,3 +1,18 @@
+"""
+Modulo limpieza de datos
+---------------------------------------------------------------------------------
+Realiza limipieza de datos; agrupa los archivos .csv ubicados en data_lake/raw
+
+Borra las filas totalmente nulas. 
+Agrupa en tres columnas: Fecha, hora y precio; ordenados por fecha y hora
+Elimina las fechas duplicadas
+Elimina filas de precios con valor nulo. 
+
+"""
+import pandas as pd
+import os
+import numpy as np
+
 def clean_data():
     """Realice la limpieza y transformación de los archivos CSV.
 
@@ -12,9 +27,7 @@ def clean_data():
 
 
     """
-    import pandas as pd
-    import os
-    import numpy as np
+    
     
     array = np.linspace(0, 23, 24,dtype=int)
     array = array.astype(str)
