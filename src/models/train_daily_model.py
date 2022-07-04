@@ -1,7 +1,16 @@
+"""
+Modelo y entrenamiento
+
+-------------------------------------------------------------
+
+Fabrica un modelo Forecaster-Autoregresivo, se entrena y se almacena en un .pkl
+
+"""
+
 import pandas as pd
 from skforecast.ForecasterAutoreg import ForecasterAutoreg
 from sklearn.ensemble import RandomForestRegressor
-
+import joblib as jb
 
 def train_daily_model():
     """Entrena el modelo de pronóstico de precios diarios.
@@ -21,18 +30,19 @@ def train_daily_model():
     datos_modelo = datos_modelo.asfreq('D')
     datos_modelo = datos_modelo['y']
     
-    steps=365 
+    steps=730
     datos_train = datos_modelo[:-steps]
-    datos_test  = datos_modelo[-steps:]
     
+    
+    regressor = RandomForestRegressor(max_depth=10, n_estimators=500, random_state=123)
     forecaster_rf = ForecasterAutoreg(
-                    regressor=RandomForestRegressor(random_state=123),
-                    lags=365 #pronostico con datos historicos un año del ultimo dato descargado. 
+                    regressor=regressor,
+                    lags=730 #pronostico con datos historicos de los ultimos dos años.  
                 )
     
     forecaster_rf.fit(y=datos_train) #entrenamiento
     
-    import joblib as jb
+    
     jb.dump(forecaster_rf,'src/models/precios-diarios.pkl')
     
     
