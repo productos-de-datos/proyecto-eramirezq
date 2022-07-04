@@ -12,58 +12,84 @@ En luigi llame las funciones que ya creo.
 
 """
 import luigi
+from luigi import LocalTarget, Task
 
-from clean_data import clean_data
 
-from ingest_data import ingest_data
-from transform_data import transform_data
-from compute_daily_prices import compute_daily_prices
-from compute_monthly_prices import compute_monthly_prices
+class ingestData(Task):
+    
+    def output(self):
+        return LocalTarget('data_lake/landing/archivo.txt')
+    
+    def run(self):
+        from ingest_data import ingest_data
+        with self.output().open('w'):
+            ingest_data()
+        
+class transformData(Task):
+    
+    def requires(self):
+        return ingestData()
+    
+    def output(self):
+        return LocalTarget('data_lake/raw/archivo.txt')
+    
+    def run(self):
+        from transform_data import transform_data
+        with self.output().open('w'):
+            transform_data()
 
+class cleanData(Task):
+    
+    def requires(self):
+        return transformData()
+    
+    def output(self):
+        return LocalTarget('data_lake/cleansed/precios-horarios.csv')
+    
+    def run(self):
+        from clean_data import clean_data
+        with self.output().open('w'):
+            clean_data()
+        
+class computeDailyPrices(Task):
+    
+    def requires(self):
+        return cleanData()
+    
+    def output(self):
+        return LocalTarget('data_lake/business/precios-diarios.csv')
+    
+    def run(self):
+        from compute_daily_prices import compute_daily_prices
+        with self.output().open('w'):
+            compute_daily_prices()
+
+class computeMonthlyPrices(Task):
+    
+    def requires(self):
+        return computeDailyPrices()
+    
+    def output(self):
+        return LocalTarget('data_lake/business/precios-mensuales.csv')
+    
+    def run(self):
+        from compute_monthly_prices import compute_monthly_prices
+        with self.output().open('w'):
+            compute_monthly_prices()
+        
 
         
                 
 if __name__ == "__main__":
     
-    class ingestData(luigi.Task):
-        def output(self):
-            return []
-    
-        def run(self):
-            ingest_data()
-        
-    class transformData(luigi.Task):
-        def output(self):
-            return []
-    
-        def run(self):
-            transform_data()
+    luigi.run(["computeMonthlyPrices", "--local-scheduler"])
 
-    class cleanData(luigi.Task):
-        def output(self):
-            return []
     
-        def run(self):
-            clean_data()
-        
-    class computeDailyPrices(luigi.Task):
-        def output(self):
-            return []
-    
-        def run(self):
-            compute_daily_prices()
-        
-    class computeMonthlyPrices(luigi.Task):
-        def output(self):
-            return []
-    
-        def run(self):
-            compute_monthly_prices()
-
 
     #raise NotImplementedError("Implementar esta función")
 
 if __name__ == "__main__":
+    
     import doctest
 
     doctest.testmod()
