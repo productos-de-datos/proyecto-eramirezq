@@ -32,10 +32,10 @@ def make_forecasts():
     datos = datos.asfreq('D')
     datos = datos['y']
     
-    steps=730
+    steps=365
     datos_test  = datos[-steps:]
     
-    steps=730
+    steps=365
     predicciones = modelo.predict(steps=steps)
     predicciones = pd.Series(data=predicciones, index=datos_test.index)
     
