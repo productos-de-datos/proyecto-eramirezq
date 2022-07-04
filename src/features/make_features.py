@@ -1,3 +1,5 @@
+import pandas as pd
+
 def make_features():
     """Prepara datos para pronóstico.
 
@@ -12,10 +14,21 @@ def make_features():
     analizar y determinar las variables explicativas del modelo.
 
     """
-    raise NotImplementedError("Implementar esta función")
+    datos = pd.read_csv('data_lake/business/precios-diarios.csv', decimal=',')
+    
+    datos['fecha'] = pd.to_datetime(datos['fecha'], format='%Y/%m/%d')
+
+    datos=datos.assign(fecha_pronostico="",precio_pronostico="")
+    
+    datos.to_csv('data_lake/business/features/precios_diarios.csv', index=False, decimal=',')
+    
+    
+    #raise NotImplementedError("Implementar esta función")
 
 
 if __name__ == "__main__":
+    
+    make_features()
     import doctest
 
     doctest.testmod()
