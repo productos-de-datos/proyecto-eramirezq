@@ -36,20 +36,6 @@ def average_daily_prices(data):
     
     return prom
 
-def test_average_daily_prices():
-    df = pd.read_csv('data_lake/cleansed/precios-horarios.csv',sep=',',thousands=None, decimal=',', header=0)
-    result=average_daily_prices(df).head()
-    expected=pd.Series(
-          {
-                "1995-07-20": 1.409435, 
-                "1995-07-21": 4.924333, 
-                "1995-07-22": 1.269500, 
-                "1995-07-23": 0.953083,
-                "1995-07-24": 4.305917,
-            }, index=pd.Series(["1995-07-20", "1995-07-21", "995-07-22", "1995-07-23", "1995-07-24" ], name="fecha"), 
-          name="precio"
-         )
-    tm.assert_frame_equal(result, expected)
 
 if __name__ == "__main__":
     
